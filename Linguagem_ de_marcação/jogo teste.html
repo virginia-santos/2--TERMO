@@ -1,0 +1,473 @@
+<!-- 
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Pênalti Pixel Art</title>
+<style>
+    body {
+        margin: 0;
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    canvas {
+        border: 4px solid white;
+        image-rendering: pixelated;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="game" width="800" height="500"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let mouseX = 400, mouseY = 200;
+let message = "";
+let messageTimer = 0;
+let frame = 0;
+
+const player = {
+    x: 390,
+    y: 330
+};
+
+const ball = {
+    x: 410,
+    y: 320,
+    vx: 0,
+    vy: 0,
+    moving: false
+};
+
+const goalie = {
+    x: 360,
+    y: 70,
+    vx: 2
+};
+
+// clique para chute
+canvas.addEventListener("click", (e) => {
+    if (ball.moving) return;
+
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+
+    shoot();
+});
+
+function shoot() {
+    ball.moving = true;
+
+    let dx = mouseX - ball.x;
+    let dy = mouseY - ball.y;
+    let len = Math.sqrt(dx*dx + dy*dy);
+
+    ball.vx = (dx / len) * 7;
+    ball.vy = (dy / len) * 7;
+}
+
+function resetBall() {
+    ball.x = player.x + 20;
+    ball.y = player.y + 10;
+    ball.vx = 0;
+    ball.vy = 0;
+    ball.moving = false;
+}
+
+function msg(text) {
+    message = text;
+    messageTimer = 60;
+}
+
+function update() {
+
+    goalie.x += goalie.vx;
+    if (goalie.x < 300 || goalie.x > 460) goalie.vx *= -1;
+
+    if (ball.moving) {
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+        // defesa
+        if (
+            ball.y < goalie.y + 60 &&
+            ball.x > goalie.x &&
+            ball.x < goalie.x + 50
+        ) {
+            msg("DEFESA!");
+            resetBall();
+        }
+
+        // gol
+        if (ball.y < 50) {
+            msg("GOOOL!");
+            resetBall();
+        }
+    }
+
+    if (messageTimer > 0) messageTimer--;
+    frame++;
+}
+
+function px(x,y,w,h,c){
+    ctx.fillStyle = c;
+    ctx.fillRect(x,y,w,h);
+}
+
+/* ------------------ JOGADOR COMPLETO ------------------ */
+function drawPlayer() {
+    // pernas
+    px(player.x + 5, player.y + 45, 8, 18, "blue");
+    px(player.x + 17, player.y + 45, 8, 18, "blue");
+
+    // corpo
+    px(player.x, player.y + 15, 30, 35, "yellow");
+
+    // gola
+    px(player.x, player.y + 15, 30, 5, "green");
+
+    // braços
+    px(player.x - 6, player.y + 20, 6, 18, "#5a3a22");
+    px(player.x + 30, player.y + 20, 6, 18, "#5a3a22");
+
+    // cabeça (pele negra)
+    px(player.x + 7, player.y, 16, 16, "#5a3a22");
+
+    // cabelo
+    px(player.x + 7, player.y - 4, 16, 8, "black");
+}
+
+/* ------------------ GOLEIRO COMPLETO ------------------ */
+function drawGoalie() {
+    // pernas
+    px(goalie.x + 8, goalie.y + 55, 10, 18, "black");
+    px(goalie.x + 22, goalie.y + 55, 10, 18, "black");
+
+    // corpo
+    px(goalie.x, goalie.y + 20, 40, 40, "black");
+
+    // braços
+    px(goalie.x - 8, goalie.y + 25, 8, 20, "black");
+    px(goalie.x + 40, goalie.y + 25, 8, 20, "black");
+
+    // cabeça
+    px(goalie.x + 10, goalie.y, 20, 20, "#ddd");
+
+    // cabelo
+    px(goalie.x + 10, goalie.y - 4, 20, 8, "black");
+}
+
+/* ------------------ BOLA ------------------ */
+function drawBall() {
+    px(ball.x, ball.y, 8, 8, "white");
+}
+
+/* ------------------ TORCIDA PISCANDO ------------------ */
+function drawCrowd() {
+    for (let y = 0; y < 120; y += 8) {
+        for (let x = 0; x < 800; x += 8) {
+
+            let flicker = Math.sin(frame * 0.2 + x * 0.05) > 0;
+
+            ctx.fillStyle = flicker
+                ? (Math.random() > 0.5 ? "#ff4444" : "#4444ff")
+                : "#222";
+
+            ctx.fillRect(x, y, 6, 6);
+        }
+    }
+}
+
+/* ------------------ CAMPO ------------------ */
+function drawField() {
+    ctx.fillStyle = "#2ecc71";
+    ctx.fillRect(0, 0, 800, 500);
+
+    // gol
+    ctx.fillStyle = "white";
+    ctx.fillRect(300, 50, 200, 10);
+}
+
+/* ------------------ MENSAGEM ------------------ */
+function drawMessage() {
+    if (messageTimer > 0) {
+        ctx.fillStyle = "white";
+        ctx.font = "50px Arial";
+        ctx.fillText(message, 300, 260);
+    }
+}
+
+function loop() {
+    ctx.clearRect(0, 0, 800, 500);
+
+    drawField();
+    drawCrowd();
+    drawGoalie();
+    drawPlayer();
+    drawBall();
+    drawMessage();
+
+    update();
+
+    requestAnimationFrame(loop);
+}
+
+resetBall();
+loop();
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Pênalti Pixel Art</title>
+<style>
+    body {
+        margin: 0;
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    canvas {
+        border: 4px solid white;
+        image-rendering: pixelated;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="game" width="800" height="500"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let mouseX = 400, mouseY = 200;
+let message = "";
+let messageTimer = 0;
+let frame = 0;
+
+const player = { x: 390, y: 330 };
+
+const ball = {
+    x: 410,
+    y: 320,
+    vx: 0,
+    vy: 0,
+    moving: false
+};
+
+const goalie = {
+    x: 360,
+    y: 70,
+    vx: 2
+};
+
+canvas.addEventListener("click", (e) => {
+    if (ball.moving) return;
+
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+
+    shoot();
+});
+
+function shoot() {
+    ball.moving = true;
+
+    let dx = mouseX - ball.x;
+    let dy = mouseY - ball.y;
+    let len = Math.sqrt(dx*dx + dy*dy);
+
+    ball.vx = (dx / len) * 7;
+    ball.vy = (dy / len) * 7;
+}
+
+function resetBall() {
+    ball.x = player.x + 20;
+    ball.y = player.y + 10;
+    ball.vx = 0;
+    ball.vy = 0;
+    ball.moving = false;
+}
+
+function msg(text) {
+    message = text;
+    messageTimer = 60;
+}
+
+function update() {
+    goalie.x += goalie.vx;
+    if (goalie.x < 300 || goalie.x > 460) goalie.vx *= -1;
+
+    if (ball.moving) {
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+        // defesa (área do gol)
+        if (
+            ball.y < goalie.y + 60 &&
+            ball.x > goalie.x &&
+            ball.x < goalie.x + 50
+        ) {
+            msg("DEFESA!");
+            resetBall();
+        }
+
+        // gol
+        if (ball.y < 40) {
+            msg("GOOOL!");
+            resetBall();
+        }
+    }
+
+    if (messageTimer > 0) messageTimer--;
+    frame++;
+}
+
+function px(x,y,w,h,c){
+    ctx.fillStyle = c;
+    ctx.fillRect(x,y,w,h);
+}
+
+/* ------------------ GRAMADO DETALHADO ------------------ */
+function drawField() {
+
+    // listras do gramado
+    for (let i = 0; i < 10; i++) {
+        ctx.fillStyle = i % 2 === 0 ? "#2ecc71" : "#27ae60";
+        ctx.fillRect(0, i * 50, 800, 50);
+    }
+
+    // linha do gol
+    ctx.fillStyle = "white";
+    ctx.fillRect(250, 40, 300, 4);
+
+    // marca do pênalti
+    ctx.fillRect(395, 300, 10, 10);
+
+    // área do goleiro (pequena marcação)
+    ctx.fillRect(300, 40, 200, 2);
+}
+
+/* ------------------ GOL COMPLETO ------------------ */
+function drawGoal() {
+
+    const x = 300;
+    const y = 40;
+    const w = 200;
+    const h = 90;
+
+    ctx.fillStyle = "white";
+
+    // travessão
+    ctx.fillRect(x, y, w, 6);
+
+    // laterais
+    ctx.fillRect(x, y, 6, h);
+    ctx.fillRect(x + w - 6, y, 6, h);
+
+    // rede (linhas diagonais simples pixeladas)
+    ctx.fillStyle = "#cccccc";
+
+    for (let i = 0; i < w; i += 12) {
+        for (let j = 0; j < h; j += 12) {
+            ctx.fillRect(x + i, y + j, 1, 1);
+        }
+    }
+}
+
+/* ------------------ JOGADOR ------------------ */
+function drawPlayer() {
+    px(player.x + 5, player.y + 45, 8, 18, "blue");
+    px(player.x + 17, player.y + 45, 8, 18, "blue");
+
+    px(player.x, player.y + 15, 30, 35, "yellow");
+    px(player.x, player.y + 15, 30, 5, "green");
+
+    px(player.x - 6, player.y + 20, 6, 18, "#5a3a22");
+    px(player.x + 30, player.y + 20, 6, 18, "#5a3a22");
+
+    px(player.x + 7, player.y, 16, 16, "#5a3a22");
+    px(player.x + 7, player.y - 4, 16, 8, "black");
+}
+
+/* ------------------ GOLEIRO ------------------ */
+function drawGoalie() {
+    px(goalie.x + 8, goalie.y + 55, 10, 18, "black");
+    px(goalie.x + 22, goalie.y + 55, 10, 18, "black");
+
+    px(goalie.x, goalie.y + 20, 40, 40, "black");
+
+    px(goalie.x - 8, goalie.y + 25, 8, 20, "black");
+    px(goalie.x + 40, goalie.y + 25, 8, 20, "black");
+
+    px(goalie.x + 10, goalie.y, 20, 20, "#ddd");
+    px(goalie.x + 10, goalie.y - 4, 20, 8, "black");
+}
+
+/* ------------------ BOLA ------------------ */
+function drawBall() {
+    px(ball.x, ball.y, 8, 8, "white");
+}
+
+/* ------------------ TORCIDA PISCANDO ------------------ */
+function drawCrowd() {
+    for (let y = 0; y < 120; y += 8) {
+        for (let x = 0; x < 800; x += 8) {
+
+            let flicker = Math.sin(frame * 0.15 + x * 0.05) > 0;
+
+            ctx.fillStyle = flicker
+                ? (Math.random() > 0.5 ? "#ff4444" : "#4444ff")
+                : "#111";
+
+            ctx.fillRect(x, y, 6, 6);
+        }
+    }
+}
+
+/* ------------------ MENSAGEM ------------------ */
+function drawMessage() {
+    if (messageTimer > 0) {
+        ctx.fillStyle = "white";
+        ctx.font = "50px Arial";
+        ctx.fillText(message, 300, 260);
+    }
+}
+
+function loop() {
+    ctx.clearRect(0, 0, 800, 500);
+
+    drawField();
+    drawGoal();
+    drawCrowd();
+    drawGoalie();
+    drawPlayer();
+    drawBall();
+    drawMessage();
+
+    update();
+
+    requestAnimationFrame(loop);
+}
+
+resetBall();
+loop();
+</script>
+
+</body>
+</html>
