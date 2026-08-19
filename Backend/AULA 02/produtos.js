@@ -1,7 +1,7 @@
 // Importando a biblioteca(a "ajudinha" que instalamos)
 const entrada = require('readline-sync');
 
-console.log("--- SISTEMA DE VENDAS PADRIA ---");
+console.log("--- SISTEMA DE VENDAS PADARIA ---");
 
 // 1. Entrada de dados pelo terminal
 // O computador para a espera o usuário digitar
