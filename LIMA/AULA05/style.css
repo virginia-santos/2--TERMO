@@ -1,0 +1,29 @@
+/* CABEÇALHO */
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: brown;
+    font-size: medium;
+    margin: 30px;
+    padding: 30px;
+
+}
+/* CLASSE */
+.Seletor {
+    font-family:'Times New Roman', Times, serif;
+    font-size:x-large;
+    padding: 20px;
+    line-height: 1.5px;
+
+}
+
+/* ID */
+#texto {
+    color:blueviolet
+}
+
+h2 {
+    font-family:Elsie;
+    font-weight:bold;
+    text-align:left;
+    font-size: 20px;
+}
