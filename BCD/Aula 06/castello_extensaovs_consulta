@@ -1,0 +1,21 @@
+CREATE DATABASE CASTELLO_extensaovs
+    DEFAULT CHARACTER SET = 'utf8mb4';
+
+USE CASTELLO_extensaovs
+
+    show TABLES;
+
+-- visualizar todos os os bancos de dados
+    show SCHEMAS;
+
+
+-- criar tabelas  
+create TABLE if not exists ALUNOS (
+    id_cliente bigint auto_increment primary key,
+    nome varchar(60) not null,
+    cpf char(14) not null unique,
+    telefone char(15),
+    data_nascimento datetime,
+    status enum('ATIVO', 'INATIVO') default 'ATIVO',
+    data_cadastro TIMESTAMP default CURRENT_TIMESTAMP
+);
