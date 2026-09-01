@@ -19,3 +19,10 @@ create TABLE if not exists ALUNOS (
     status enum('ATIVO', 'INATIVO') default 'ATIVO',
     data_cadastro TIMESTAMP default CURRENT_TIMESTAMP
 );
+
+-- apagar banco de dados
+drop DATABASE castello_extensaovs;
+
+-- descrição da tabela
+-- informar os atributos e tipos de dados
+describe ALUNOS;
