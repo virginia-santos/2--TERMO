@@ -63,7 +63,7 @@ WHERE valor_total >= 25.00;
 
 -- -- EX 6: AND, OR E NOT
 -- EXEMPLO COM AND
-SELECT nome, preco 
+SELECT NOME_PRODUTO, preco 
 FROM produto
 WHERE preco >=8 AND preco <=20;
 
