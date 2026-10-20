@@ -40,4 +40,4 @@ WHERE NOME_PRODUTO LIKE 'café%';
 -- 9
 SELECT nome, telefone
 FROM cliente
-WHERE telefone IS NOT NULL;
+WHERE telefone IS NOT NULL;l
