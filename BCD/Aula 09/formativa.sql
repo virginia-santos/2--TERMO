@@ -20,3 +20,24 @@ SELECT NOME_PRODUTO, preco
 FROM produto
 ORDER BY preco 
 lIMIT 5;
+
+-- PARTE B
+-- 6
+SELECT NOME_PRODUTO, preco  
+FROM produto
+WHERE preco BETWEEN 8.00 AND 15.00;
+
+-- 7
+SELECT nome, cidade
+FROM cliente
+WHERE cidade IN ('Limeira', 'Americana');
+
+-- 8
+SELECT NOME_PRODUTO 
+FROM produto 
+WHERE NOME_PRODUTO LIKE 'café%';
+
+-- 9
+SELECT nome, telefone
+FROM cliente
+WHERE telefone IS NOT NULL;
