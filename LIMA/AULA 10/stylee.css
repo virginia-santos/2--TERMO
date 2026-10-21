@@ -1,0 +1,53 @@
+.equipe {
+     display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 15px ;
+    
+}
+
+.equipe2 {
+     display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 30px ;
+    
+}
+
+.equipe3 {
+     display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 30px ;
+    
+}
+
+.equipe4 {
+     display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 30px ;
+    align-items: center;
+    
+}
+
+.equipe5{
+     display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 30px ;
+    align-items: flex-start;
+}
+
+.equipe6{
+     display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 30px ;
+    align-items: flex-end;
+    
+}
+
+
+
+    
