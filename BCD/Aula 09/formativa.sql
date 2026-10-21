@@ -40,4 +40,40 @@ WHERE NOME_PRODUTO LIKE 'café%';
 -- 9
 SELECT nome, telefone
 FROM cliente
-WHERE telefone IS NOT NULL; vinicius
+WHERE telefone IS NOT NULL;
+
+-- 10
+SELECT `VALOR_TOTAL` , `STATUS_PEDIDO` 
+FROM pedido
+WHERE `STATUS_PEDIDO` LIKE 'FINALIZADO%'
+ORDER BY `VALOR_TOTAL` DESC;
+
+-- PARTE C- CÁLCULOS E AGRUPAMENTOS
+-- 11
+SELECT COUNT(*) AS TOTAL_PRODUTOS
+FROM produto;
+
+-- 12
+SELECT MIN(preco) AS MENORES_PRECOS,
+       MAX(preco) AS MAIORES_PRECOS,
+       AVG(preco) AS MÉDIA_PRECOS
+FROM produto;
+
+-- 13
+SELECT cidade,
+       COUNT(*) AS Quantidade_clientes
+FROM cliente
+GROUP BY cidade;
+
+-- 14
+SELECT cidade,
+        COUNT(*) AS Quantidade_Clientes
+FROM cliente
+GROUP BY cidade
+HAVING COUNT(*) >= 2;
+
+-- 15
+SELECT SUM(valor_total) AS FATURAMENTO
+FROM pedido
+WHERE status = 'FINALIZADO' AND PRECO > 20
+ORDER BY valor_total DESC;

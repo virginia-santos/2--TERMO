@@ -215,16 +215,18 @@ FROM cliente
 GROUP BY cidade;
 -- QUANTIDADE DE CLIENTE EM CADA CIDADE
 
-SELECT id_categoria;
-COUNT(*) AS QUANTIDADE_PRODUTO
+SELECT id_categoria,
+    COUNT(*) AS Quantidade_Produtos
 FROM produto
-GROUP BY 
+GROUP BY id_categoria;
 -- QUANTIDADE DE PRODUTOS POR CATEGORIA
 
 -- EX 17: HAVING - FILTRAR GRUPOS
 -- WHERE FILTRA LINHAS ANTES DO AGRUPAMENTO
 -- HAVING FILTRA GRUPOS DEPOIS DO GROUP BY
-SELECT cidade
+SELECT cidade,
+        COUNT(*) AS Quantidade_Clientes
+FROM cliente
 GROUP BY cidade
 HAVING COUNT(*) >= 2;
 -- CIDADE COM PELO MENOS DOIS CLIENTES
@@ -237,11 +239,12 @@ GROUP BY colunas_agrupar
 HAVING condicao_agrupar
 ORDER BY colunas
 LIMIT qauntidade;
+-- exemplo de construção de uma consulta
 
-SELECT nome, cidade, COUNT(*) AS Quantidade_Clientes
+SELECT cidade, COUNT(*) AS Quantidade_Clientes
 FROM cliente
 WHERE cidade = 'Limeira'
-GROUP BY cidade 
+GROUP BY cidade
 HAVING COUNT(*) >=3
 LIMIT 5;
 
