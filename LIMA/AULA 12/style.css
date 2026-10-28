@@ -14,9 +14,9 @@
 
     /* Espaçamento */
     --espaco-xs: 4px;
-    --espaco-sn:
-    --espaco-
-    --espaco-
+    --espaco-sn: 8px;
+    --espaco-md: 16px;
+    --espaco-lg:24px;
 }
 
 /* configurações de reset básico */
@@ -159,5 +159,5 @@ id-nav a {
 
 .id-grid-cart:hover {
     transform: translateY(4px);
-    box-shadow: 0.12px 30px (43, 23, 13, 0.12);
+    box-shadow: 0.12px 30px var(--preto);
 }

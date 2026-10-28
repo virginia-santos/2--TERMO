@@ -1,0 +1,25 @@
+:root {
+    /* Paleta de Cores */
+    --Roxo: #F3E6D7;
+    --Azul: black;
+    --Verde: #FFFFFF;
+    --off :#dee1ea;
+    --Roxos:#1A0B2E;
+    -- : #0F172A;
+
+.flexb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+}
+
+.menu-f {
+    display: flex;
+    justify-content: flex-end;
+    gap: 43px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+   
+}
