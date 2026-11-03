@@ -48,18 +48,40 @@ CREATE TABLE FUNCIONARIOS (
     ID_FUNCIONARIOS INT PRIMARY KEY AUTO_INCREMENT,
     NOME VARCHAR(110) NOT NULL,
     CARGO VARCHAR(100) NOT NULL,
-    DATA_NASCIMENTO DATETIME NOT NULL
+    DATA_NASCIMENTO DATE NOT NULL
 );
 
 -- 5.
 ALTER TABLE LIVRO ADD EDITORA VARCHAR(100);
 
+ALTER TABLE Livro MODIFY ISBN VARCHAR(30);
+
 -- FASE 2
-INSERT INTO USUARIOS (NOME, EMAIL, TELEFONE, ATIVO)
-('Vitoria Viana', 'vitorialegal552@email.com', '1140028922', TRUE)
-('vinicius henrique', 'viniart@email.com', '1198654678', TRUE)
-('Luiza Vieira', 'Vieiralu34@email.com', NULL, TRUE)
-('Vitoria Viana', 'vitorialegal552@gmail.com', '1140028922', TRUE)
+-- 6.
+INSERT INTO USUARIO (NOME, EMAIL, TELEFONE, ATIVO) VALUES
+('Vitoria Viana', 'vitorialegal552@email.com', '1140028922', TRUE),
+('vinicius Henrique', 'viniart@email.com', '1198654678', TRUE),
+('Luiza Vieira', 'Vieiralu34@email.com', NULL, TRUE),
+('Lavinia Santos', 'Lavissantos4598@gmail.com', '1133212387', TRUE);
+
+-- 7.
+INSERT INTO LIVRO (TITULO, AUTOR, ISBN, ANO_PUBLICACAO, QUANTIDADE_DISPONIVEL) VALUES
+('Melhor do que nos filmes', 'Lynn Painter', '978-65-5560-728-4', '2023', '15'),
+('Dom Casmurro', 'Machado de Assis', '9788525411297', '1899', '34'),
+('O Pequeno Príncipe', 'Antoine de Saint-Exupéry', '9788574482552', '1943', '16'),
+('1984', 'George Orwell', '9788535914849', '1943', '20'),
+('A Biblioteca da Meia-Noite', 'Matt Haig', '9786558380542', '2020', '7'),
+('Torto Arado', 'Itamar Vieira Junior', '9788511003468', '2019', '25');
+
+-- 8.
+INSERT INTO EMPRESTIMO (DATA_EMPRESTIMO, DATA_PREVISTA, DATA_DEVOLUCAO, STATUS_EMPRESTIMO, ID_USUARIO, ID_LIVRO) VALUES
+('2026-09-01 08:15:00', '2026-09-28', '2026-10-01', 'ABERTO', '123456', '543210' ),
+('2026-11-13 10:35:00', '2026-11-28', '2026-11-29', 'ABERTO', '34567899', '1053748' ),
+('2026-10-25 13:15:00', '2026-11-22', '2026-11-25', 'ABERTO', '6721954', '489056' ),
+('2026-09-02 08:45:00', '2026-09-30', '2026-10-31', 'FECHADO', '5518492', '7741369');
+
+
+
 
 
 
