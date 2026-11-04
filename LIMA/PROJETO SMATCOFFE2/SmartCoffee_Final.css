@@ -1,0 +1,97 @@
+:root {
+    /* PALETA DE CORES SAMRTCOFFEE */
+    --expresso: #2B170D;
+    --café:#5A321B;
+    --caramelo:#c66a1a;
+    --creme:#F3E6D7;
+    --taupe:#A9887A;
+    --texto:#1E140F;
+    --branco:#FFFFF;
+    --marfim:#FFF9F3;
+
+
+/* DEFINIÇÕES COMPLEMENTARES DE BORDA, SOMBRA, RAIO E ESPAÇAMENTO DE TEXTO */
+--borda: #E7D8C8;
+--sombra: 0 14px 34px rgba(43,23,13,0.00);
+--sombra-hover: 0 18px 42px rgba(43,23,13,0.14);
+--raio: 14px;
+--espaco-peq:8px;
+--espaco-medio: 16px;
+--espaco-grande: 24px;
+--espaco-egarnde: 40px;
+--espaco-xgarnde: 64px;
+--espaco-xxgrande:80px:
+}
+
+/* CONFIGURAÇÃO PRINCIPAL - RESET INICIAL DE LAYOUT */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    color: var(--branco);
+    background-color: var(--marfim);
+    line-height: 1,6;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+figure {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+h1, h2, h3, p {
+    margin-top: 0;
+}
+
+input, textarea, button {
+    font: inherit;
+}
+
+/* CABEÇALHO DO SITE */
+.cabecalho-principal {
+    min-height: 88px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--espaco-medio);
+    padding: 16px max(6vw, 24px);
+    background-color: var(--expresso);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.marca {
+   display: flex;
+   align-items: center;
+   gap: var(--espaco-peq)
+
+}
+
+.menu a {
+    color: var(--branco);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2 ease;
+
+}
+
