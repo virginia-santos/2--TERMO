@@ -1,17 +1,42 @@
 :root {
     /* Paleta de Cores */
-    --Roxo: #F3E6D7;
-    --Azul: black;
-    --Verde: #FFFFFF;
+    --Roxo: #754ef3;
+    --Azul: rgb(53, 157, 226);
+    --Verde: #85d292;
     --off :#dee1ea;
     --Roxos:#1A0B2E;
-    -- : #0F172A;
+    --azul: #0F172A;
+    --verdeescuro:#52b252;
 
+    /* FONTES */
+    --TITULOCB: "Redaction 10";
+    
+
+    .botao {
+  background: var(--Azul);
+  color: var(--off);
+  padding: 13px 26px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.botao:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 22px -8px rgba(0, 0, 0, 0.35);
+}
+.botao:active {
+  transform: translateY(-2px) scale(0.97);
+}
+}
 .flexb {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 8%;
+    font-family: var(--TITULOCB);
+    color: #52b252;
+    background-color: #0F172A;
 }
 
 .menu-f {
@@ -22,4 +47,34 @@
     margin: 0;
     padding: 0;
    
+}
+
+.antes-anos {
+    color: var(--Azul);
+}
+
+.grid-gal-img2 {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    /* grid-template-columns: repeat(auto-fit, minmax(223px, 1fr)); */
+    gap: 32px;
+    list-style: none;
+    
+    padding: 0;
+}
+
+.card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+  background-color: var(--);
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 34px -14px rgba(0, 0, 0, 0.4);
+}
+.moldura { overflow: hidden; }
+.moldura img { transition: transform 0.4s; }
+.card:hover .moldura img {
+  transform: scale(1.12);
 }
