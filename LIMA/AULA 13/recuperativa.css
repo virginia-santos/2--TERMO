@@ -1,0 +1,28 @@
+:root {
+  /* Fundos */
+  --bg-principal: #0F141C;
+  --bg-secundario: #1E2631;
+
+  /* Cores dos Times */
+  --team-cap-azul: #1B4F9C;
+  --team-cap-claro: #3B82F6;
+  --team-iron-vermelho: #B71C1C;
+  --team-iron-claro: #EF4444;
+  --ESCURO: #0F141C;
+
+  /* Destaques e Textos */
+  --destaque-dourado: #D4AF37;
+  --texto-principal: #F4F6F9;
+  --texto-secundario: #9AA5B1;
+}
+
+.inicio {
+    /* background-color: cadetblue; */
+    background-image: linear-gradient(135deg, var(--team-cap-azul) , var(--ESCURO), var(--team-iron-vermelho));
+    display: flex;
+    border-radius: 0; 
+    /* border radius deixa borda arredondada */
+    height: 80 px;
+    align-items: center;
+    justify-content: center;
+}
