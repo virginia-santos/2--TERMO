@@ -211,16 +211,62 @@ img {
 
 .flex-cs {
   display: flex;
+  gap: 24px; 
+  list-style: none; 
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  align-items: stretch; 
+}
+
+
+.flex-cs li {
+  flex: 1;
+  display: flex;
+}
+
+/* Estilo visual de cada card (fundo, espaçamento e borda arredondada) */
+.flex-s {
+   background-color: var(--bg-principal);
+  border-radius: 16px; 
+  padding: 28px; 
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--texto-principal);
+
+}
+.flex-t {
   background-color: var(--bg-principal);
-  /* gap: 8px; */
-  /* flex-direction: row; */
- 
-
+  border-radius: 16px; 
+  padding: 28px; 
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--texto-principal);
 }
 
 
-.programacao span {
-   background-image: linear-gradient(20deg, #be9d42, #ccbc72, #690303);
+
+
+
+
+.flex-s span {
+   background-image: linear-gradient(20deg, #be9d42, #690303, #690303);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-style: normal;
+    -webkit-text-fill-color: transparent;
+  color: transparent;
+    -webkit-background-clip: text;
+  background-clip: text;           
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 12px;
+
+}
+.flex-t span {
+   background-image: linear-gradient(17deg, #be9d42, #690a0a, #690303);
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 400;
   font-style: normal;
@@ -236,29 +282,13 @@ img {
 
 }
 
-.sobre span {
-   background-image: linear-gradient(20deg, #be9d42, #ccbc72, #690303);
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: 400;
-  font-style: normal;
-    -webkit-text-fill-color: transparent;
-  color: transparent;
-    -webkit-background-clip: text;
-  background-clip: text;           
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  display: block;
-  margin-bottom: 12px;
-
-}
 
 .sobre {
   display: flex;
   color: var(--texto-principal);
    background-color: var(--bg-principal);
    justify-content: space-between;
-   gap: 8px;
+   gap: 16px;
    border-radius: 12px;
 
 }
