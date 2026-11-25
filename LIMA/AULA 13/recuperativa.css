@@ -86,7 +86,7 @@ body {
 .conteudo-art {
     /* display: flex; obrigatorio para alinhar qaundo usar o flex */
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 15px;
+    font-size: 20px;
     align-items: center;
     margin: 30px;
     padding: 60 px;
@@ -111,8 +111,13 @@ body {
 }
 
 .botao{
-  border-radius: 6px;
-  color: #8b7630;
+  background: var(--destaque-dourado);
+  color: var(--off);
+  padding: 13px 26px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 img {
@@ -206,21 +211,13 @@ img {
 
 .flex-cs {
   display: flex;
-  gap: 8px;
+  background-color: var(--bg-principal);
+  /* gap: 8px; */
+  /* flex-direction: row; */
  
 
 }
 
-.programacao {
-  display: flex;
-   color: var(--texto-principal);
-   background-color: var(--bg-principal);
-   border-radius: 12px;
-   
-
-   
-
-}
 
 .programacao span {
    background-image: linear-gradient(20deg, #be9d42, #ccbc72, #690303);
